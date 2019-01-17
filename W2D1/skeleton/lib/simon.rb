@@ -12,53 +12,48 @@ class Simon
   end
 
   def play
-    take_turn until game_over
+    until game_over
+      take_turn
+      system("clear")
+    end
 
     game_over_message
     reset_game
   end
 
   def take_turn
-    #debugger
-    
-    # if require_sequence == seq
-    #   round_success_message
-    #   add_random_color
-    #   sequence_length += 1
-    # else
-    #   game_over == true
-    # end
     show_sequence
     require_sequence
-    "Test"
+    
+    unless game_over
+      round_success_message
+      @sequence_length += 1
+    end
   end
 
   def show_sequence
-    # debugger
-    # puts "Watch closely"
-    # sleep(1)
-    self.add_random_color
-    # p seq
-    # sleep(2)
-    # system("clear")
-    puts seq
+    add_random_color
+    @seq.each do |color|
+      puts color
+      sleep 0.75
+      system("clear")
+      sleep 0.25
+    end
   end
 
   def require_sequence
     #debugger
     input_seq = []
+    i = 0
     until input_seq.length == sequence_length
       puts "Please enter the sequence of color once at a time."
       color = gets.chomp
+      return game_over = false if seq[i] != color
       input_seq << color
-    end
-    
-    i = 0
-    while i < seq.length
-      return game_over = false if seq[i] != input_seq[i]
+
       i += 1
     end
-
+    
     input_seq
   end
 
@@ -78,3 +73,4 @@ class Simon
     initialize
   end
 end
+
