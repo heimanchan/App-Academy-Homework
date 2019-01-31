@@ -1,6 +1,6 @@
 module ApplicationHelper
   def auth_token
-  input = "<input type=\"hidden\" name=\"authenticity_token\" value='#{form_authenticity_token}'/>"
-  input.html_safe
+    input = "<input type='hidden' name='authenticity_token' value='#{form_authenticity_token}'/>"
+    input.html_safe
   end
 end

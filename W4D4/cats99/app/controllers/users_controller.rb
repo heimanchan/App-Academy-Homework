@@ -7,8 +7,8 @@ class UsersController < ApplicationController
       login_user!(@user)
 
       msg = UserMailer.welcome_email(@user)
-      mas.deliver_now
-
+      msg.deliver_now
+      
       redirect_to cats_url
     else
       flash.now[:errors] = @user.errors.full_messages
