@@ -317,7 +317,8 @@ var reducer = function reducer() {
     default:
       return state;
   }
-};
+}; // window.reducer = reducer;
+
 
 /* harmony default export */ __webpack_exports__["default"] = (reducer);
 

@@ -15,4 +15,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+
+// window.reducer = reducer;
+
 export default reducer;
