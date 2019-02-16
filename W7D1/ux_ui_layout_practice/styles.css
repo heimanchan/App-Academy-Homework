@@ -1,9 +1,33 @@
-.top-bar {
-  padding: 10px;
-  display: flex;
-  height: 150px;
+body {
+  margin: 0 auto;
 }
 
-.logo img{
-  width: 100px;
+.header {
+  background: #fff;
+  width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+}
+
+.header img{
+  align-self: center;
+  width: 50px;
+}
+
+.nav-bar {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-bar ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-bar ul > li {
+  margin: 0 10px;
+  padding: 10px;
 }
