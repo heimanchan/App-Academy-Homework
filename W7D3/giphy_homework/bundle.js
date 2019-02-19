@@ -96,7 +96,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./util/api_util.js");
-/* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_util_api_util__WEBPACK_IMPORTED_MODULE_0__);
 
 
 /***/ }),
@@ -235,7 +234,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], null), document.getElementById('root'));
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    store: store
+  }), document.getElementById('root'));
 });
 
 /***/ }),
@@ -23977,10 +23979,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************!*\
   !*** ./util/api_util.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: fetchSearchGiphys */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSearchGiphys", function() { return fetchSearchGiphys; });
+var fetchSearchGiphys = function fetchSearchGiphys(searchTerm) {
+  return $.ajax({
+    method: 'GET',
+    url: "http://api.giphy.com/v1/gifs/search?q=".concat(searchTerm, "&api_key=dc6zaTOxFJmzC&limit=2")
+  });
+};
 
 /***/ })
 
