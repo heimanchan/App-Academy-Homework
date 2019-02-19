@@ -1173,11 +1173,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState);
+  var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(addLoggingToDispatch, addHelloToDispatch));
   store.subscribe(function () {
     localStorage.state = JSON.stringify(store.getState());
   });
   return store;
+}; // ES6 fat arrow notation
+
+
+var addLoggingToDispatch = function addLoggingToDispatch(store) {
+  return function (next) {
+    return function (action) {
+      console.log(store.getState());
+      console.log(action);
+      next(action);
+      console.log(store.getState());
+    };
+  };
+}; // function addLoggingToDispatch(store) {
+//   return function (next) {
+//     return function (action) {
+//       console.log(store.getState());
+//       console.log(action);
+//       next(action);
+//       console.log(store.getState());
+//     };
+//   };
+// };
+
+
+var addHelloToDispatch = function addHelloToDispatch(store) {
+  return function (next) {
+    return function (action) {
+      console.log("Hello from middleware!");
+      next(action);
+    };
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
@@ -1202,10 +1233,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // const applyMiddlewares = (store, ...middlewares) => {
+//   let dispatch = store.dispatch;
+//   middlewares.forEach( middleware => {
+//     dispatch = middleware(store)(dispatch);
+//   });
+//   return Object.assign({}, store, { dispatch });
+// }
 
 document.addEventListener('DOMContentLoaded', function () {
   var preloadedState = localStorage.state ? JSON.parse(localStorage.state) : {};
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState); // store = applyMiddlewares(store, addLoggingToDispatch);
+
   var root = document.getElementById('content');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
